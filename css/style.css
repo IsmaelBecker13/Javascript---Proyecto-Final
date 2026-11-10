@@ -1,0 +1,262 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+@font-face {
+  font-family: "Pokemon Fire Red";
+  src: url("../assets/font/PKMN RBYGSC.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+body {
+  font-family: "Pokemon Fire Red", sans-serif;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: black;
+}
+#game {
+  transform: scale(3);
+}
+#viewport {
+  width: 240px;
+  height: 160px;
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+#dialogueBox {
+  /* Ancho y posición del contenedor */
+  position: absolute;
+  bottom: 0%;
+  width: 224px;
+  height: 41px;
+  /* Configuración de la imagen de fondo */
+  background-image: url("../assets/sprites/UI/textbox.png");
+  background-repeat: no-repeat;
+  background-size: contain;
+  image-rendering: pixelated;
+  display: flex;
+  flex-direction: column;
+  font-size: 0.5rem;
+  color: rgb(237, 210, 105);
+}
+#battle {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  visibility: hidden;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+#battle-background {
+  position: absolute;
+  inset: 0;
+  background-image: url("../assets/sprites/UI/battle-background.png");
+  background-repeat: no-repeat;
+  image-rendering: pixelated;
+}
+#opponent-pokemon,
+#player-pokemon {
+  position: absolute;
+  width: 64px;
+  height: 64px;
+  background-repeat: no-repeat;
+  background-size: contain;
+  image-rendering: pixelated;
+  z-index: 1;
+}
+#opponent-stats,
+#player-stats {
+  position: absolute;
+  background-repeat: no-repeat;
+  background-size: contain;
+  image-rendering: pixelated;
+  z-index: 1;
+}
+.pokemon-stat-name,
+.pokemon-stat-level {
+  position: absolute;
+  top: 7px;
+  font-size: 6px;
+  line-height: 1;
+  color: #4b4538;
+  white-space: nowrap;
+}
+.pokemon-stat-name {
+  left: 18px;
+  max-width: 48px;
+  overflow: hidden;
+}
+.pokemon-stat-level {
+  right: 11px;
+}
+.pokemon-hp-bar {
+  position: absolute;
+  top: 19.5px;
+  left: 47px;
+  width: 52px;
+  height: 2px;
+  overflow: hidden;
+}
+#opponent-stats .pokemon-hp-bar {
+  top: 18.5px;
+  left: 42px;
+}
+#player-stats .pokemon-hp-bar {
+  left: 50px;
+}
+.pokemon-hp-bar-fill {
+  width: 100%;
+  height: 100%;
+  background-color: #70F8A8;
+}
+#opponent-stats {
+  top: 8px;
+  left: 8px;
+  width: 103px;
+  height: 31px;
+}
+#player-stats {
+  right: 5px;
+  bottom: 45px;
+  width: 105px;
+  height: 40px;
+}
+#player-stats .pokemon-stat-name {
+  left: 21px;
+  max-width: 54px;
+}
+#player-stats .pokemon-stat-level {
+  right: 8px;
+}
+#opponent-pokemon {
+  top: 8px;
+  right: 20px;
+}
+#player-pokemon {
+  bottom: 34px;
+  left: 18px;
+}
+@keyframes pokemon-hit-flash {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.15;
+  }
+}
+.pokemon-hit-flash {
+  animation: pokemon-hit-flash 0.18s steps(2, end) 8;
+}
+#battle-textbox {
+  /* Ancho y posición del contenedor */
+  position: absolute;
+  bottom: 0%;
+  width: 100%;
+  height: 41px;
+  /* Configuración de la imagen de fondo */
+  background-image: url("../assets/sprites/UI/textbox.png");
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  image-rendering: pixelated;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  overflow-wrap: anywhere;
+  white-space: pre-line;
+  line-height: 1.1;
+  padding: 2px 6px;
+  font-size: 0.5rem;
+  color: rgb(237, 210, 105);
+}
+#dialogueOptions {
+  /* Panel separado del cuadro de texto para que no quede tapado. */
+  position: absolute;
+  right: 2px;
+  bottom: 43px;
+  width: 116px;
+  height: auto;
+  min-height: 0;
+  background-image: url("../assets/sprites/UI/optionsbox.png");
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  image-rendering: pixelated;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 2px;
+  padding: 8px 10px;
+  z-index: 4;
+  font-size: 0.5rem;
+  color: rgb(237, 210, 105);
+}
+#dialogueOptions > div {
+  flex: 0 0 auto;
+  line-height: 1.25;
+  overflow-wrap: anywhere;
+}
+#dialogueName {
+  height: 8px;
+  padding-top: 0.25rem;
+
+  width: 100%;
+  padding-left: 0.5rem;
+}
+#dialogueText {
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+  padding-top: 0.25rem;
+  padding-bottom: 0.25rem;
+  width: 100%;
+  height: 24px;
+  overflow: hidden;
+}
+#map {
+  position: absolute;
+  background-position: top left;
+  background-repeat: no-repeat;
+  image-rendering: pixelated;
+  transform-origin: center;
+}
+
+.debug-grid {
+  position: absolute;
+  inset: 0;
+  width: 240px;
+  height: 160px;
+  pointer-events: none;
+  z-index: 1;
+}
+
+#player {
+  width: 16px;
+  height: 21px;
+  margin-top: -6px;
+  background-image: url("../assets/sprites/player/spr_player_stand.png");
+  background-size: cover;
+  position: absolute;
+  z-index: 2;
+  background-repeat: no-repeat;
+  image-rendering: pixelated;
+}
+
+.npc-sprite {
+  position: absolute;
+  width: 16px;
+  height: 21px;
+  margin-top: -6px;
+  background-repeat: no-repeat;
+  background-size: cover;
+  image-rendering: pixelated;
+  pointer-events: none;
+}

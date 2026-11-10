@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script type="module" src="js/game.js?v=20261014-trainer-defeated-1"></script>
+    <title>Pokemon RPG</title>
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <main id="game">
+      <div id="viewport">
+        <div id="map"></div>
+        <div id="dialogueOptions"></div>
+        <div id="dialogueBox" hidden>
+          <p id="dialogueName"></p>
+          <p id="dialogueText"></p>
+        </div>
+        <div id="battle">
+          <div id="battle-background">
+            <div id="opponent-stats">
+              <span id="opponent-name" class="pokemon-stat-name"></span>
+              <span id="opponent-level" class="pokemon-stat-level"></span>
+              <div class="pokemon-hp-bar"><div id="opponent-hp-bar" class="pokemon-hp-bar-fill"></div></div>
+            </div>
+            <div id="opponent-pokemon"></div>
+            <div id="player-pokemon"></div>
+            <div id="player-stats">
+              <span id="player-name" class="pokemon-stat-name"></span>
+              <span id="player-level" class="pokemon-stat-level"></span>
+              <div class="pokemon-hp-bar"><div id="player-hp-bar" class="pokemon-hp-bar-fill"></div></div>
+            </div>
+          </div>
+          <div id="battle-textbox"></div>
+        </div>
+      </div>
+    </main>
+  </body>
+</html>
